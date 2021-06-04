@@ -16,7 +16,7 @@ module.exports = configure(function (ctx) {
     supportTS: {
       tsCheckerConfig: {
         eslint: {
-          enabled: true,
+          enabled: false,
           files: './src/**/*.{ts,tsx,js,jsx,vue}',
         },
       }
@@ -74,6 +74,12 @@ module.exports = configure(function (ctx) {
 
       // https://v2.quasar.dev/quasar-cli/handling-webpack
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
+      extendWebpack (config) {
+        // config.resolve.alias.https = false;
+        // config.resolve.alias.http = false;
+        // config.resolve.alias.https = "https-browserify";
+        // config.resolve.alias.http = "http-browserify";
+      },
       chainWebpack (/* chain */) {
         //
       },

@@ -12,11 +12,11 @@ quasar dev
 
 ### vuex, axios open api support
 ```
-yarn add vuex-module-decorators -D
-yarn add vuex-class -D
-yarn add vue-property-decorator -D
-yarn add openapi-client-axios -D
-yarn add openapi-client-axios-typegen -D
+yarn add vuex-module-decorators
+yarn add vuex-class
+yarn add vue-property-decorator
+yarn add axios openapi-client-axios
+npm install -g openapi-client-axios-typegen
 ```
 
 ### openApiGenerator
