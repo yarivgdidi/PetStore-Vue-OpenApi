@@ -1,5 +1,9 @@
 # Cloud Admin setup steps
 
+##references:
+https://blog.logrocket.com/vue-typescript-tutorial-examples \
+https://www.npmjs.com/package/openapi-client-axios
+
 ### setting quasar
 - install node 12.22.1 (nvm)
 ```
