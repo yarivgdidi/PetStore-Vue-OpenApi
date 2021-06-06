@@ -58,6 +58,11 @@ const linksList = [
     title: 'Customers',
     icon: 'chat',
     link: '#/customers'
+  },
+  {
+    title: 'Pets',
+    icon: 'android',
+    link: '#/pets'
   }
 ];
 

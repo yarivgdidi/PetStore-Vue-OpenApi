@@ -1,9 +1,6 @@
 import { VuexModule, Module, Mutation, Action } from 'vuex-module-decorators';
-import { Api } from 'src/services/Api';
-import {
-  Components,
-} from '../../openApiDefinitions/petstore';
-
+import {Pet, PetApi} from 'src/openApiClient/PetStoreClient';
+import axios from 'axios';
 
 @Module({
   name: 'Pet',
@@ -11,21 +8,21 @@ import {
   namespaced: true,
 })
 class PetModule extends VuexModule {
-  private pets: Components.Schemas.Pet[] = [];
+  private pets: Pet[] = [];
   get getPets() {
     return this.pets;
   }
 
   @Mutation
-  public setPets(pets: Components.Schemas.Pet[]): void {
+  public setPets(pets: Pet[]): void {
     this.pets = pets;
   }
   @Action({ commit: 'setPets' })
-  public async listPets(): Promise<Components.Schemas.Pet[]> {
-    const api = await Api.getClient();
-    const pets = await api.listPets();
+  public async listPets(): Promise<Array<Pet>> {
+    const instance = axios.create({ baseURL: 'http://localhost:3000' })
+    const petApi = new PetApi(undefined, undefined, instance)
+    const pets = await petApi.listPets();
     return pets.data;
-    // return Promise.resolve([])
   }
 }
 export default PetModule;

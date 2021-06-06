@@ -1,16 +1,18 @@
 <template>
   <q-page class="row items-center justify-evenly">
-   <h1>Customers</h1>
+    <h1>Pets</h1>
+    <pet-component></pet-component>
   </q-page>
 </template>
 
 <script lang="ts">
 import { Vue, Options } from 'vue-class-component'
+import PetComponent from 'components/PetComponent.vue'
 
 @Options({
-  components: {  }
+  components: { PetComponent }
 })
-export default class CustomersIndex extends Vue {
+export default class PetsIndex extends Vue {
 
 };
 </script>
