@@ -1,7 +1,6 @@
 <template>
   <q-page class="row items-center justify-evenly">
-    <h1>Pets</h1>
-    <pet-component></pet-component>
+       <pet-component></pet-component>
   </q-page>
 </template>
 

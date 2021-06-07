@@ -1,7 +1,6 @@
 <template>
   <q-page class="row items-center justify-evenly">
-    <h1>Reports</h1>
-    <report-component></report-component>
+     <report-component></report-component>
   </q-page>
 </template>
 

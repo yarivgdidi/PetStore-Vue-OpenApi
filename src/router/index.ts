@@ -6,6 +6,8 @@ import {
   createWebHistory,
 } from 'vue-router';
 import routes from './routes';
+import { ssoSilent } from 'boot/msal';
+
 
 /*
  * If not building with SSR mode, you can
@@ -15,6 +17,7 @@ import routes from './routes';
  * async/await or return a Promise which resolves
  * with the Router instance.
  */
+
 
 export default route(function (/* { store, ssrContext } */) {
   const createHistory = process.env.SERVER
@@ -33,5 +36,8 @@ export default route(function (/* { store, ssrContext } */) {
     ),
   });
 
+  Router.beforeEach((to, from) => {
+    ssoSilent()
+  })
   return Router;
 });

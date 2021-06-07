@@ -28,3 +28,6 @@ npx @openapitools/openapi-generator-cli generate -i public\openApi\petstore.yaml
 ```
 openapi-generator-cli generate -i public\openApi\petstore.yaml -g typescript-axios -o src/openApiClient/PetStoreClient --skip-validate-spec --additional-properties packageName=PetStoreClient
 ```
+
+#Azure auth
+http://css-workshop.com/microsoft-azure-users-authentication-in-front-end/

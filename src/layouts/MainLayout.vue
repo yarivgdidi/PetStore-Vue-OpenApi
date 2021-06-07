@@ -13,6 +13,24 @@
         <q-toolbar-title>
           Cloud Admin
         </q-toolbar-title>
+
+
+        <div>
+          <q-btn size="11px" round>
+            <q-avatar size="28px">
+              <img src="https://i.pravatar.cc/150?img=65">
+            </q-avatar>
+            <q-menu anchor="bottom middle" self="top right">
+              <q-item clickable>
+                <q-item-section @click="menuLogout">Logout</q-item-section>
+              </q-item>
+
+            </q-menu>
+          </q-btn>
+        </div>
+
+
+
       </q-toolbar>
     </q-header>
 
@@ -47,27 +65,27 @@ const linksList = [
   {
     title: 'Reports',
     icon: 'school',
-    link: '#/reports'
+    link: 'reports'
   },
   {
     title: 'Licences',
     icon: 'code',
-    link: '#/licences'
+    link: 'licences'
   },
   {
     title: 'Customers',
     icon: 'chat',
-    link: '#/customers'
+    link: 'customers'
   },
   {
     title: 'Pets',
     icon: 'android',
-    link: '#/pets'
+    link: 'pets'
   }
 ];
 
 import { Vue, Options } from 'vue-class-component'
-
+import { logout } from 'src/boot/msal'
 @Options({
   components: { EssentialLink }
 })
@@ -78,5 +96,10 @@ export default class MainLayout extends Vue {
   toggleLeftDrawer () {
     this.leftDrawerMiniState = !this.leftDrawerMiniState
   }
+
+  menuLogout () {
+    logout()
+  }
+
 }
 </script>
