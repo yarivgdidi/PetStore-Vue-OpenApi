@@ -1,5 +1,5 @@
 <template>
-  <q-page class="row items-center justify-evenly">
+  <q-page  padding class="page license-page">
    <h1>Customers</h1>
   </q-page>
 </template>

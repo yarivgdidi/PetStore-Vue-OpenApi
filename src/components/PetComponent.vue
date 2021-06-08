@@ -10,7 +10,6 @@
     </tr>
   </table>
   <button @click="loginPopup">Login</button>
-  <button @click="logout">Logout</button>
 </template>
 
 <script lang="ts">
@@ -31,6 +30,7 @@ export default class PetComponent extends Vue {
 
   mounted() {
     void petModule.listPets()
+
   }
   loginPopup() {
 

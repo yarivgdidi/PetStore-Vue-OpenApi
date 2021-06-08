@@ -1,5 +1,5 @@
 <template>
-  <q-page class="row items-center justify-evenly">
+  <q-page  padding class="page license-page">
      <report-component></report-component>
   </q-page>
 </template>

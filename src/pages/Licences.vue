@@ -1,14 +1,15 @@
 <template>
-  <q-page class="row items-center justify-evenly">
-    <h1>Licences</h1>
+  <q-page padding class="page license-page">
+    <license-component></license-component>
   </q-page>
 </template>
 
 <script lang="ts">
 import { Vue, Options } from 'vue-class-component'
+import LicenseComponent from  'components/licenses/LicenseComponent.vue'
 
 @Options({
-  components: {  }
+  components: { LicenseComponent }
 })
 export default class LicenseIndex extends Vue {
 
