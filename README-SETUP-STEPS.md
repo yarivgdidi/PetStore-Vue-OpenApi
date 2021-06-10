@@ -26,6 +26,7 @@ npx @openapitools/openapi-generator-cli generate -i public\openApi\petstore.yaml
 
 ### Generate client
 ```
+openapi-generator-cli generate -i public\openApi\cloud-admin.yaml -g typescript-axios -o src/openApiClient/CloudAdminClient --skip-validate-spec --additional-properties packageName=CloudAdminClient
 openapi-generator-cli generate -i public\openApi\petstore.yaml -g typescript-axios -o src/openApiClient/PetStoreClient --skip-validate-spec --additional-properties packageName=PetStoreClient
 ```
 

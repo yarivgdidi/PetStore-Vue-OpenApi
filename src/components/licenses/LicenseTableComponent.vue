@@ -2,7 +2,6 @@
 
     <q-table
       class="license-table"
-      style="height: 800px"
       title="Treats"
       :rows="rows"
       :columns="columns"
@@ -168,6 +167,7 @@ export default {
 
 <style lang="scss" scoped>
   .license-table {
+    height: calc(100vh - 150px);
     width:100%;
   }
 </style>

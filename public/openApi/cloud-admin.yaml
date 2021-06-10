@@ -1,0 +1,278 @@
+openapi: 3.0.2
+servers:
+  - url: http://localhost:3000
+info:
+  description: |-
+    incredibuild Cloud admin api
+    Some useful links:
+    - to-do put open api source link here
+    - to-do some read me file maybe
+  version: 1.0.0
+  title: Cloud Admin - OpenAPI 3.0
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: license
+    description: Incredibuild cloud admin license entity
+  - name: packages
+    description: Incredibuild cloud admin license entity
+paths:
+  /adminservice/getLicenses:
+    get:
+      summary: List all licenses
+      operationId: listLicenses
+      tags:
+        - license
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: start
+          in: query
+          description: Ofset for current page = (N * limit) -1
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: A paged array of licenses
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/License"
+        '204':
+          description: No Content
+  /adminservice/getPackages:
+    get:
+      summary: List all Packages
+      operationId: listPackages
+      tags:
+        - package
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: start
+          in: query
+          description: Ofset for current page = (N * limit) -1
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: A paged array of packages
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Package"
+        '204':
+          description: No Content
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'
+components:
+  schemas:
+    License:
+      x-swagger-router-model: io.swagger.cloud-admin.model.License
+      required:
+        - id
+        - coordId
+        - packageId
+        - status
+        - activation_date
+      properties:
+        id:
+          description: License id
+          type: integer
+          format: int64
+          example: 10
+        coordId:
+          description: Coordinator id
+          type: string
+          example: A2ED97A4-D08B-47B9-B106-EC5116E4BCED
+        packageId:
+          type: integer
+          format: int64
+          example: 10
+        status:
+          description: License status - consider enum in the future
+          type: integer
+          format: int64
+          example: 10
+        sales_person_email:
+          description: Sales person email
+          type: string
+          example: yariv.gdidi@incredibuild.com
+        contact_person_email:
+          description: Contact person email e.g. Customer success manager
+          type: string
+          example: "yariv.gdidi@incredibuild.com"
+        remarks:
+          description: Loosly typed any additional coments
+          type: string
+          example: Pay-As-You-Go license selected for Azure
+        nextLicense:
+          description: Optional next License id
+          type: integer
+          format: int64
+          example: 10
+        activation_date:
+          description: UTC License activation date-time
+          type: string
+          format: date-time
+          example: 2021-01-30T08:30:00Z
+        pricePerHour:
+          description: License hourly price
+          type: integer
+          format: int64
+          example: 1234
+        notificationFlags:
+          description: License hourly price - israel please provide proper description
+          type: integer
+          format: int64
+          example: 1234
+        durationExtension:
+          description: license extention duration in extensionUnit e.g 3 for 3 months
+          type: integer
+          format: int64
+          example: 3
+        extensionUnit:
+          description: license extention duration in extensionUnit e.g 3 for 3 months
+          type: string
+          example: month
+        isGroup:
+          description: State if the license is part of a group
+          type: boolean
+        createdAt:
+          description: License creation date (in database)
+          type: string
+          format: date-time
+          example: 2021-01-30T08:30:00Z
+        updatedAt:
+          description: License last update date (in database)
+          type: string
+          format: date-time
+          example: 2021-01-30T08:30:00Z
+        package:
+          $ref: '#/components/schemas/Package'
+      xml:
+        name: pet
+      type: object
+    Package:
+      x-swagger-router-model: io.swagger.cloud-admin.model.Package
+      required:
+        - id
+        - coordId
+        - packageId
+        - status
+        - activation_date
+      properties:
+        id:
+          description: Package id
+          type: integer
+          format: int64
+          example: 10
+        name:
+          description: Package name
+          type: string
+          example: Twelve months 30000 total hours
+        package_type:
+          description: Package type
+          type: string
+          example: hours
+        month_duration:
+          description: Package month duration
+          type: integer
+          format: int64
+          example: 12
+        quantity:
+          description: Package quantity
+          type: integer
+          format: int64
+          example: 3000
+        active:
+          description: Is license active
+          type: boolean
+          example: true
+        isTrial:
+          description: Is this a triel lilcense
+          type: boolean
+          example: false
+        createdAt:
+          description: License creation date (in database)
+          type: string
+          format: date-time
+          example: 2021-01-30T08:30:00Z
+        updatedAt:
+          description: License last update date (in database)
+          type: string
+          format: date-time
+          example: 2021-01-30T08:30:00Z
+        package:
+          $ref: '#/components/schemas/Package'
+      xml:
+        name: pet
+      type: object
+    ApiResponse:
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+      xml:
+        name: '##default'
+      type: object
+  requestBodies:
+    License:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/License'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/License'
+      description: Incredibuild cloud admin license
+  securitySchemes:
+    petstore_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: 'https://petstore.swagger.io/oauth/authorize'
+          scopes:
+            'write:pets': modify pets in your account
+            'read:pets': read your pets
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
