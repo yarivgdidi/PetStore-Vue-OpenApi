@@ -1,7 +1,7 @@
 <template>
     <q-card square class="license-card">
       <q-bar class="bg-grey-3 text-grey-9"  >
-        <h7>Licenses</h7>
+        <h6>Licenses</h6>
       </q-bar>
       <q-card-section>
         <div class="license-row row">
@@ -18,6 +18,8 @@
 import {Options, Vue} from 'vue-class-component';
 import LicenseTableComponent from 'components/licenses/LicenseTableComponent.vue';
 
+
+
 @Options({
   components: {LicenseTableComponent}
 })
@@ -29,7 +31,9 @@ export default class LicenseComponent extends Vue {
 
 <style lang="scss" scoped>
   .license-card {
-    min-height: calc(100vh - 100px)
+    height: calc(100vh - 98px);
+    min-height: calc(100vh - 98px);
+    max-height: calc(100vh - 98px);
   }
 </style>
 

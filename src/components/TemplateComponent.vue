@@ -9,11 +9,10 @@ import {Prop, Watch} from 'vue-property-decorator';
 export default class TemplateComponent extends Vue {
 
   @Prop() readonly msg!: string
-  @Prop({default: 'John doe'}) readonly name: string
 
-  public data1: string;
-  public data2: string;
-  public data3: string[];
+  public data1 = 'stam1';
+  public data2 = 'stam2';
+  public data3 = [this.data1, this.data2];
 
   mounted() {
     console.log('implements mounted life cycle')
@@ -23,8 +22,9 @@ export default class TemplateComponent extends Vue {
     console.log('implements method that would go into methods')
   }
 
-  get anyComputedProperty() {
+  get anyComputedProperty(): any[] {
     console.log('implements method that would go into computed')
+    return [];
   }
 
   @Watch('data1')

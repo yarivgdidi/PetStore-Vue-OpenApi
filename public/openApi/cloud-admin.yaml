@@ -16,9 +16,7 @@ info:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 tags:
-  - name: license
-    description: Incredibuild cloud admin license entity
-  - name: packages
+  - name: cloud-admin
     description: Incredibuild cloud admin license entity
 paths:
   /adminservice/getLicenses:
@@ -26,7 +24,7 @@ paths:
       summary: List all licenses
       operationId: listLicenses
       tags:
-        - license
+        - cloud-admin
       parameters:
         - name: limit
           in: query
@@ -50,7 +48,7 @@ paths:
               description: A link to the next page of responses
               schema:
                 type: string
-          content:
+          licenses:
             application/json:
               schema:
                 type: array
@@ -63,7 +61,7 @@ paths:
       summary: List all Packages
       operationId: listPackages
       tags:
-        - package
+        - cloud-admin
       parameters:
         - name: limit
           in: query
@@ -123,10 +121,15 @@ components:
           format: int64
           example: 10
         status:
-          description: License status - consider enum in the future
-          type: integer
-          format: int64
-          example: 10
+          description: License status
+          type: string
+          enum:
+            - UNUSED
+            - ACTIVE
+            - PAUSED
+            - DISABLED
+            - EXPIRED
+            - DELETED
         sales_person_email:
           description: Sales person email
           type: string

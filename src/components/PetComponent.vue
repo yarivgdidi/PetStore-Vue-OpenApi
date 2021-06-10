@@ -14,6 +14,7 @@
 
 <script lang="ts">
 import {Options, Vue} from 'vue-class-component';
+
 import { getModule } from 'vuex-module-decorators';
 import {namespace} from 'vuex-class';
 import { Pet } from 'src/openApiClient/PetStoreClient'
