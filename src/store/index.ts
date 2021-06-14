@@ -1,6 +1,6 @@
 import { createStore } from 'vuex';
-import Pet from '../../../../ib/cloud-admin/src/store/module/Pet';
-import License from '../../../../ib/cloud-admin/src/store/module/License';
+import Pet from 'src/store/module/Pet';
+import License from 'src/store/module/License';
 
 
 export default createStore({
