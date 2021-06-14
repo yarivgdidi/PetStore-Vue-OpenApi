@@ -1,5 +1,5 @@
-import { VuexModule, Module, Mutation, Action } from 'vuex-module-decorators';
-import {License, CloudAdminApi} from 'src/openApiClient/CloudAdminClient';
+import {VuexModule, Mutation, Action, Module} from 'vuex-module-decorators';
+import {License } from 'src/openApiClient/CloudAdminClient';
 import cloudApi from 'boot/adminApi';
 
 @Module({
@@ -9,22 +9,30 @@ import cloudApi from 'boot/adminApi';
 })
 class LicenseModule extends VuexModule {
   private licenses: License[] = [];
+  rowsNumber = 10;
 
   get getLicenses() {
     return this.licenses;
   }
 
-  @Mutation
-  public setLicences(licenses: License[]): void {
-    this.licenses = licenses;
+  get getRowsNumber() {
+    return this.rowsNumber;
   }
-  @Action({ commit: 'setLicences' })
-  public async listLicenses(): Promise<Array<License>> {
-    const licenses = await cloudApi.listLicenses()
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/ban-ts-comment
+  @Mutation
+  public setLicences(licenses:  {rows: License[] , count: number }): void {
+    const { count: rowsNumber } = licenses
+    this.licenses = licenses.rows;
+    this.rowsNumber = rowsNumber;
+  }
+
+  @Action( { commit: 'setLicences' })
+  public async listLicenses(limit?: number, start?: number, options: any = {}): Promise<Array<License>> {
+    const response = await cloudApi.listLicenses(limit, start, options)
     // @ts-ignore
-    return licenses.data.licenses
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    return response.data.licenses
+
     // return Promise.resolve([])
   }
 }
